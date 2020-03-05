@@ -1,0 +1,42 @@
+import java.util.*;
+public class Main{
+
+     public static void main(String []args){
+        
+        Scanner sc=new Scanner(System.in);
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        long vist[][]=new long[m][n];
+        for (int i=0;i<col;i++)
+        {
+            for (int j=0;j<row;j++)
+            {
+                vist[i][j]=0;
+            }
+        }
+        
+        for (int i=0;i<col;i++)
+        
+            vist[i][0]=1;
+        
+        for (int i=0;i<row;i++)
+            
+            vist[col-1][i]=1;
+        
+        for (int i=col-2;i>=0;i--)
+        {
+            for (int j=1;j<row;j++)
+            {
+                vist[i][j]=(vist[i][j]+vist[i+1][j])%100000000;
+            
+                if (vist[i][j-1]>0)
+            
+                    vist[i][j]=(vist[i][j]+vist[i][j-1])%100000000;
+            }
+        }
+        
+        System.out.print(vist[0][col-1]);
+        
+        
+     }
+}
